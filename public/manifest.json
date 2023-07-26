@@ -1,0 +1,25 @@
+{
+  "short_name": "Parmar Tours",
+  "name": "Everyone loves to travel. What makes your travel experience memorable is impeccable planning – from choosing the destination to booking your flight tickets, accommodation, itinerary and more. At Parmar Tours and Travels, we have carved a name as among the most trustworthy travel agent from UAE, UAE through our hands-on involvement in everything to make your vacation an experience that lasts a lifetime.",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
