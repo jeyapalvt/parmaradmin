@@ -197,11 +197,11 @@ const Agencycreationform = (props) => {
   //     console.log(newdata);
   // };
 
-  // const handleFormValueUpdate = (id, value) => {
-  //   const newdata = { ...Data };
-  //   newdata[id] = value;
-  //   setData(newdata);
-  // };
+  const handleFormValueUpdate = (id, value) => {
+    const newdata = { ...Data };
+    newdata[id] = value;
+    setData(newdata);
+  };
 
   const agencyCreation = (values) => {
     //  console.log("butten pressed")
