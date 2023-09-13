@@ -1,7 +1,7 @@
-const baseURL = "http://66.29.149.191:8080/parmartour/v1.0/"; //  /v1.54254785215/"   local: http://192.168.43.214:8443/  server http://66.29.149.191:8080/parmartour/
-const imagebaseUrl = "http://66.29.149.191:8080/"; //Server for image http://66.29.149.191:8080/ local http://192.168.43.214:8443/
+const baseURL = "https://parmartours.com:8443/parmartour/v1.0/"; //  /v1.54254785215/"   local: http://192.168.43.214:8443/  server http://66.29.149.191:8080/parmartour/
+const imagebaseUrl = "https://parmartours.com:8443"; //Server for image http://66.29.149.191:8080/ local http://192.168.43.214:8443/
 const requests = {
-  image: "http://66.29.149.191:8080/parmartour/", // http://66.29.149.191:8080/parmartour/v1.0/fileupload   //testing server 103.235.106.127  http://103.235.106.127:8080/parmartour/
+  image: "https://parmartours.com:8443/parmartour/", // http://66.29.149.191:8080/parmartour/v1.0/fileupload   //testing server 103.235.106.127  http://103.235.106.127:8080/parmartour/
   generateXeroInvoice: baseURL + "generateXeroInvoice",
   removeUserData: baseURL + "removeUserData",
   getBookingList: baseURL + "getBookingList",
@@ -112,5 +112,23 @@ const requests = {
   deleteTicketUnusedTickets: baseURL + "deleteTicketUnusedTickets",
   setTestTicket: baseURL + "setTestTicket",
   deleteMarkupDiscount: baseURL + "deleteMarkupDiscount",
+  setAttractionTransfer: baseURL + "setAttractionTransfer",
+  createAmenities: baseURL + "createAmenities",
+  getAmenitiesList: baseURL + "getAmenitiesList",
+  deleteAmenities: baseURL + "deleteAmenities",
+  createHotel: baseURL + "createHotel",
+  getHotelList: baseURL + "getHotelList",
+  getLanguagesListFromGoogle: baseURL + "getLanguagesListFromGoogle",
+  translateText: baseURL + "translateText",
+  createLanguages: baseURL + "createLanguages",
+  getLanguagesList: baseURL + "getLanguagesList",
+  editLanguages: baseURL + "editLanguages",
+  deleteLanguages: baseURL + "deleteLanguages",
+  addCustomerReview: baseURL + "addCustomerReview",
+  getCustomerReviewList: baseURL + "getCustomerReviewList",
+  deleteCustomerReview: baseURL + "deleteCustomerReview",
+  addAttractionFaqs: baseURL + "addAttractionFaqs",
+  getAttractionFaqsList: baseURL + "getAttractionFaqsList",
+  deleteAttractionFaqs: baseURL + "deleteAttractionFaqs",
 };
 export default requests;

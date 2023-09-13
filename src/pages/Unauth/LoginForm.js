@@ -39,18 +39,21 @@ const LoginForm = (props) => {
       userPassword: values.password,
     };
 
-    if (
-      values.username === "ta.jeyapal@gmail.com" &&
-      values.password === "jeyapalsenest@mail.com"
-    ) {
-      sessionStorage.setItem("login", 1);
-      window.location.reload();
-      window.location.href = "/";
-    }
+    // console.log("userData", userData);
+    // if (
+    //   values.username === "ta.jeyapal@gmail.com" &&
+    //   values.password === "jeyapalsenest@mail.com"
+    // ) {
+    //   sessionStorage.setItem("login", 1);
+    //   window.location.reload();
+    //   window.location.href = "/";
+    // }
 
     axios
       .post(requests.getUserData, userData)
+
       .then((response) => {
+        console.log("user Data", response.data);
         if (response.data.errCode == 0) {
           encryptStorage.setItem("DFuck", response.data);
           sessionStorage.setItem("login", 1);

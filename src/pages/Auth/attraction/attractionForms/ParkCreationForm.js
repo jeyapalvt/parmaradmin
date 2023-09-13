@@ -22,7 +22,7 @@ import DropZoneSingleRender from "../../../formcomponent/formfields/dropzonSingl
 
 import EditorFieldComponent from "../../../formcomponent/editorfield/EditorFieldComponent";
 import Swal from "sweetalert2";
-
+import { useHistory } from "react-router-dom";
 import OldImg from "./OldImg";
 import AddHolidays from "../AddHolidays";
 
@@ -104,7 +104,7 @@ const ParkCreationForm = (props) => {
   ];
 
   const [isLoading, setLoading] = useState(true);
-
+  const history = useHistory();
   const [req, setreq] = useState();
 
   useEffect(() => {
@@ -146,7 +146,7 @@ const ParkCreationForm = (props) => {
   const [SitePhoto, setSitePhoto] = useState();
   const [getImageList, setgetImageList] = useState(false);
   const [connectWithApi, setconnectWithApi] = useState(false);
-
+  const [alertUser, setalertUser] = useState(false);
   let testImage;
   const getAttraction = async () => {
     await axios
@@ -157,6 +157,7 @@ const ParkCreationForm = (props) => {
           (attdetail) => attdetail.attractionsId == atId
         );
 
+        console.log("toursfilter", toursfilter);
         initialValues(toursfilter);
         setThumbnailImage(toursfilter[0].attThumbnailImage);
         setBannerImage(toursfilter[0].attBannerImage);
@@ -263,7 +264,7 @@ const ParkCreationForm = (props) => {
     // private int b2bChildBookFeePercent;
     // private int b2cAdultBookFeePercent;
     // private int b2cChildBookFeePercent
-
+    console.log("------>", toursfilter[0]);
     if (props.attid != "null") {
       props.initialize({
         attractionsId: props.attid,
@@ -282,7 +283,7 @@ const ParkCreationForm = (props) => {
         b2bChildBookFeePercent: toursfilter[0].b2bChildBookFeePercent,
         b2cAdultBookFeePercent: toursfilter[0].b2cAdultBookFeePercent,
         b2cChildBookFeePercent: toursfilter[0].b2cChildBookFeePercent,
-
+        attlocation: toursfilter[0].attlocation,
         statusActive: toursfilter[0].statusActive,
         attTopAttractions: toursfilter[0].attTopAttractions,
         attTopDestination: toursfilter[0].attTopDestination,
@@ -291,7 +292,13 @@ const ParkCreationForm = (props) => {
         attUpComingTours: toursfilter[0].attUpComingTours,
         attTermsAndCondition: toursfilter[0].attTermsAndCondition,
         attConnectWithApi: toursfilter[0].attConnectWithApi,
+        alertUser: toursfilter[0].alertUser,
+        alertMessage: toursfilter[0].alertMessage,
+        openTicketOption: toursfilter[0].openTicketOption,
+        addrLatitude: toursfilter[0].addrLatitude,
+        addrLongitude: toursfilter[0].addrLongitude,
       });
+      setalertUser(toursfilter[0].alertUser);
       setconnectWithApi(toursfilter[0].attConnectWithApi);
       setb2bAdultBookFeePercent(toursfilter[0].b2bAdultBookFeePercent);
       setb2bChildBookFeePercent(toursfilter[0].b2bChildBookFeePercent);
@@ -399,10 +406,15 @@ const ParkCreationForm = (props) => {
       attUpComingTours: values.attUpComingTours,
       attDescription: values.attDescription,
       attTermsAndCondition: values.attTermsAndCondition,
+      openTicketOption: values.openTicketOption,
+      alertUser: values.alertUser,
+      alertMessage: values.alertMessage,
+      attlocation: values.attlocation,
       attThumbnailImage: img1,
       attBannerImage: img2,
       attLogo: img3,
       attSitePhoto: img4,
+
       b2bAdultBookFeePercent: b2bAdultBookFeePercent,
       b2bChildBookFeePercent: b2bChildBookFeePercent,
       b2cAdultBookFeePercent: b2cAdultBookFeePercent,
@@ -410,6 +422,8 @@ const ParkCreationForm = (props) => {
       // filesStorage: JSON.stringify(attImageList).replace("\\", "")
       filesStorage: JSON.parse(attractionOldImage),
       platformId: 1,
+      addrLatitude: values.addrLatitude,
+      addrLongitude: values.addrLongitude,
     };
 
     // console.log(`You Values:\n\n${JSON.stringify(values, null, 2)}`);
@@ -418,12 +432,14 @@ const ParkCreationForm = (props) => {
     axios
       .post(req, submitData)
       .then((res) => {
+        console.log(res.data);
         successAlert(
           "Success",
           "New Attraction Created Successfully",
           "success"
         );
-        dispatch(reset());
+        history.goBack();
+        // dispatch(reset());
       })
       .catch((err) => {
         console.log(err);
@@ -571,11 +587,30 @@ const ParkCreationForm = (props) => {
               <Label>Allow To Open Tickets</Label>
               <Col xs={6}>
                 <Field
-                  name="showOpenAndDated"
+                  name="openTicketOption"
                   type="checkbox"
                   component={RenderField.RendercheckboxField}
                   label="For Open And Dated Ticket Allow To Book"
                 />
+              </Col>
+            </Row>
+            <br />
+            <Row>
+              <Col>
+                <Field
+                  name="attlocation"
+                  type="text"
+                  component={RenderField.RenderTextField}
+                  label="Location"
+                />
+              </Col>
+              <Col>
+                {/* <Field
+                  name="addrLongitude"
+                  type="text"
+                  component={RenderField.RenderTextField}
+                  label="Longitude"
+                /> */}
               </Col>
             </Row>
             <br />
@@ -731,6 +766,49 @@ const ParkCreationForm = (props) => {
               component={RenderField.RenderTextareaField}
               label="Terms And Conditions"
             />
+
+            <Row>
+              <Col xs={6}>
+                <div
+                  style={{
+                    display: "flex",
+                  }}
+                >
+                  <Label
+                    for="exampleSelect"
+                    style={{
+                      marginRight: "30px",
+                      marginTop: "20px",
+                    }}
+                  >
+                    Alert User Message
+                  </Label>
+
+                  <Field
+                    name="alertUser"
+                    id="alertUser"
+                    type="checkbox"
+                    component={RenderField.RenderTextField}
+                    onChange={() => setalertUser(!alertUser)}
+                  />
+                </div>
+              </Col>
+            </Row>
+            <br />
+            {alertUser === true && (
+              <Row>
+                <Label>Alert Message</Label>
+                <EditorField
+                  key="field"
+                  name="alertMessage"
+                  id="inputEditorText"
+                  disabled={false}
+                  component={EditorFieldComponent}
+                  placeholder="Type here"
+                />
+              </Row>
+            )}
+
             <br />
             {/* {parkGroup.map((pklist, i) => (
               <div key={i}>
@@ -756,6 +834,10 @@ const ParkCreationForm = (props) => {
                 </div>
               </div>
             ))} */}
+
+            <br />
+            <br />
+            <br />
             <div className="float-right">
               <Button
                 color="primary"

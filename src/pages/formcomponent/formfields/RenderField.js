@@ -38,6 +38,7 @@ const renderOptionField = ({
   label,
   type,
   customfeild,
+  disabled,
   meta: { asyncValidating, touched, error },
 }) => (
   <div>
@@ -46,7 +47,13 @@ const renderOptionField = ({
     <FormGroup>
       <div className={asyncValidating ? "async-validating" : ""}>
         {/* <Label for={label}>{label}</Label> */}
-        <Input {...input} type={type} placeholder={label} data-allow-clear={1}>
+        <Input
+          {...input}
+          type={type}
+          placeholder={label}
+          data-allow-clear={1}
+          disabled={disabled}
+        >
           {customfeild.map((optvalue, key) => (
             <option key={key} name={optvalue.value} value={optvalue.value}>
               {optvalue.name}
@@ -124,6 +131,7 @@ const RenderSelectField = ({
   type,
   isDisabled,
   options,
+  defaultValue,
   meta: { asyncValidating, touched, error },
 }) => (
   <div>
@@ -132,13 +140,11 @@ const RenderSelectField = ({
     <FormGroup>
       <Select
         {...input}
-        // onChange={(event, value) => input.onChange(value)}
-        //onChange={value => input.onChange(value)}
         value={options.find((c) => c.value === input.value[0])}
         onChange={(val) => input.onChange(val.value)}
-        // onBlur={() => input.onBlur(input.value)}
         onBlur={(event) => event.preventDefault()}
         options={options}
+        defaultValue={defaultValue || "Select"}
         isDisabled={isDisabled}
       />
     </FormGroup>
@@ -185,10 +191,18 @@ const RendercheckboxField = ({
   type,
   checked,
   customfeild,
+  id,
+  onChange,
   meta: { asyncValidating, touched, error },
 }) => (
   <div>
-    <input type="checkbox" {...input} checked={checked} />{" "}
+    <input
+      type="checkbox"
+      {...input}
+      checked={checked}
+      id={id}
+      onChange={onChange}
+    />{" "}
     &nbsp;&nbsp;&nbsp;&nbsp;
     {label}
     <div className="err-msg">{touched && error && <span>{error}</span>}</div>

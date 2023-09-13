@@ -34,7 +34,6 @@ const Attractionlisttable = () => {
       });
   };
   const actionButton = (params) => {
-  
     //alert(`${params.data.attName} `);
     history.push(
       `/attraction/attraction-creation/${params.data.attractionsId}`

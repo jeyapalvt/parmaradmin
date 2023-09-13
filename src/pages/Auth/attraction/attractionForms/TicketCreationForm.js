@@ -173,6 +173,7 @@ const TicketCreationForm = (props) => {
     axios
       .post(requests.getTicketTypeListByAttraction, { ttAttractionId: attId })
       .then((res) => {
+        console.log("res tickets", res.data);
         const values = [...tkttypeTemp];
         values.length = 0;
         values.push({

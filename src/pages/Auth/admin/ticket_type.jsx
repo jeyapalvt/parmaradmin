@@ -4,15 +4,18 @@ import Tickettypetable from "./ticket_type_table";
 const TicketType = () => {
   return (
     <>
-      <Titlebanner title="Ticket Type"/>
-     <div className="float-right">
-        <Link to="/admin/ticket-type-new/null" class="btn btn-primary" role="button">
+      <Titlebanner title="Ticket Type" />
+      <div className="float-right">
+        <Link
+          to="/admin/ticket-type-new/null"
+          class="btn btn-primary"
+          role="button"
+        >
           Create New
         </Link>
       </div>
-
-      <br/> <br/> <br/>
-    <Tickettypetable/>
+      <br /> <br /> <br />
+      <Tickettypetable />
     </>
   );
 };

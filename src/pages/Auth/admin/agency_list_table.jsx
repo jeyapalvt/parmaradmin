@@ -23,7 +23,7 @@ const Agencylistable = () => {
     axios
       .post(requests.getagencylist, attraction)
       .then((res) => {
-        // console.log("res data", res.data);
+        console.log("res data", res.data);
         setTourlist(res.data);
         setrowData(res.data);
         setRecordForTable(res.data);

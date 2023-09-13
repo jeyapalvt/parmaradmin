@@ -6,6 +6,8 @@ import axios from "axios";
 import requests from "../../../../utils/Requests";
 import RenderField from "../../../formcomponent/formfields/RenderField";
 import { useEffect, useState } from "react";
+import EditorFieldComponent from "../../../formcomponent/editorfield/EditorFieldComponent";
+import EditorField from "../../../formcomponent/editorfield/EditorField";
 import Swal from "sweetalert2";
 import { useHistory } from "react-router-dom";
 const AfterSubmit = (result, dispatch) => {
@@ -73,7 +75,7 @@ const TicketTypeCreationForm = (props) => {
     setisloading(true);
     getattForEdit(editdata);
   };
-
+  const [alertUser, setalertUser] = useState();
   const getattForEdit = (editTempData) => {
     // console.log("TempData", editTempData);
 
@@ -82,7 +84,7 @@ const TicketTypeCreationForm = (props) => {
         attGroup: editTempData[0].ttGroupId,
       })
       .then((response) => {
-        // console.log("Res", response.data)
+        console.log("Res", response.data);
 
         setcheckAPI(response.data);
         const values = [...attractionList];
@@ -101,13 +103,19 @@ const TicketTypeCreationForm = (props) => {
       })
 
       .catch(() => {});
+
     props.initialize({
       ticketTypeId: editTempData[0].editTempData,
       ttGroupId: editTempData[0].ttGroupId,
       ttAttractionId: editTempData[0].ttAttractionId,
       ttTicketType: editTempData[0].ttTicketType,
       ttTicketTypeDiscription: editTempData[0].ttTicketTypeDiscription,
+
+      altMessage: editTempData[0].altMessage,
+      altUser: editTempData[0].altUser,
     });
+
+    setalertUser(editTempData[0].altUser);
     // axios
     //   .post(requests.getattractionallbygroup, { attGroup: aid })
     //   .then((res) => {
@@ -144,6 +152,7 @@ const TicketTypeCreationForm = (props) => {
   const [checkAPI, setcheckAPI] = useState([]);
   const [showTkttype, setshowTkttype] = useState(true);
   const [showOption, setShowOption] = useState(false);
+
   const getallparkgroup = async () => {
     await axios
       .post(requests.getallparkgroup, attraction)
@@ -302,6 +311,7 @@ const TicketTypeCreationForm = (props) => {
     // {ttGroupId: '1', ttAttractionId: '1', ttTicketType: 'terere', ttTicketTypeDiscription: 'dgccbcbv'}  for Normal Ticket
     // {ttGroupId: '1', ttAttractionId: '1', ttTicketType: 'terere', ttTicketTypeDiscription: '' eventtypeId: "1" resourceID: "1"}   for connect with api
     // resourceID
+
     let postUrl;
     if (props.tktId != "null") {
       postUrl = requests.updateTicketType;
@@ -321,9 +331,12 @@ const TicketTypeCreationForm = (props) => {
         ttTicketTypeDiscription: temptketDetail[0].ttTicketTypeDiscription,
         eventtypeId: values.apiTicket,
         resourceID: temptketDetail[0].resourceID,
+        altMessage: values.altMessage,
+        altUser: values.altUser,
         platformId: 1,
       };
-
+      console.log("values", ticktSubmit);
+      //postUrl
       axios
         .post(postUrl, ticktSubmit)
         .then((res) => {
@@ -352,12 +365,16 @@ const TicketTypeCreationForm = (props) => {
         ttAttractionId: values.ttAttractionId,
         ttTicketType: values.ttTicketType,
         ttTicketTypeDiscription: values.ttTicketTypeDiscription,
+        altMessage: values.altMessage,
+        altUser: values.altUser,
         platformId: 1,
       };
-
+      ///postUrl
+      console.log(`${JSON.stringify(ticktSubmit, null, 2)}`);
       axios
         .post(postUrl, ticktSubmit)
         .then((res) => {
+          console.log(res.data);
           successAlert(
             "Success",
             "New Ticket Type Created Successfully",
@@ -473,6 +490,49 @@ const TicketTypeCreationForm = (props) => {
                 />
               </>
             )}
+
+            <Row>
+              <Col xs={6}>
+                <div
+                  style={{
+                    display: "flex",
+                  }}
+                >
+                  <Label
+                    for="exampleSelect"
+                    style={{
+                      marginRight: "30px",
+                      marginTop: "20px",
+                    }}
+                  >
+                    Alert User Message
+                  </Label>
+
+                  <Field
+                    name="altUser"
+                    id="alertUser"
+                    type="checkbox"
+                    component={RenderField.RenderTextField}
+                    onChange={() => setalertUser(!alertUser)}
+                  />
+                </div>
+              </Col>
+            </Row>
+            {alertUser === true && (
+              <Row>
+                <Label>Alert Message</Label>
+                <EditorField
+                  key="field"
+                  name="altMessage"
+                  id="inputEditorText"
+                  disabled={false}
+                  component={EditorFieldComponent}
+                  placeholder="Type here"
+                />
+              </Row>
+            )}
+            <br />
+            <br />
             {/* {showTkttype === true ? <> </> : <></>} */}
             <div className="float-right">
               <Button color="primary" disabled={submitting}>

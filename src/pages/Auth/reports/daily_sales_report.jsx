@@ -226,7 +226,7 @@ const Dailysalesreport = (props) => {
         //bookingTickPdfPath
         const fileURL =
           // "http://66.29.149.191:8080/filestorage/parmartour/images/" +
-          " https://www.parmartours.com/filestorage/" +
+          "https://b2b.parmartours.com/filestorage/" +
           responce.data.bookingTickPdfPath;
         const filename = "e-Ticket.pdf";
         download_file(fileURL, filename);

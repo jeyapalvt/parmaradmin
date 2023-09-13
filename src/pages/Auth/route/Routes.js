@@ -77,6 +77,23 @@ import AddonStockReport from "../reports/addon_stock_report";
 import AddHolidays from "../attraction/AddHolidays";
 import ApiAccessPermistion from "../agentapi/ApiAccessPermistion";
 import TicketUpload from "../agentapi/TicketUpload";
+import CreateTransport from "../transport/CreateTransport";
+import TransportList from "../transport/TransportList";
+import LinkTransportList from "../transport/LinkTransportList";
+import LinkTransport from "../transport/LinkTransport";
+import CreateHotel from "../hotel/CreateHotel";
+import HotelList from "../hotel/HotelList";
+import AttractionTransport from "../transport/AttractionTransport";
+import ListAminities from "../hotel/ListAminities";
+import CraeteAminities from "../hotel/CraeteAminities";
+import LanguageList from "../websetting/languageList";
+import CreateLanguage from "../websetting/createLanguage";
+import ReviewList from "../reviewAndfaq/ReviewList";
+import FaqList from "../reviewAndfaq/FaqList";
+import CreateReview from "../reviewAndfaq/CreateReview";
+import CreateFaq from "../reviewAndfaq/CreateFaq";
+import BannerImageBtoC from "../websetting/BannerImageBtoC";
+
 let urlId = sessionStorage.getItem("randomString");
 const routes = [
   {
@@ -378,5 +395,71 @@ const routes = [
     path: "/api/upload-test-tickets",
     component: TicketUpload,
   },
+  {
+    path: "/transport/list-transport",
+    component: TransportList,
+  },
+  {
+    path: "/transport/create-transport",
+    component: CreateTransport,
+  },
+  {
+    path: "/transport/link-transport-list",
+    component: LinkTransportList,
+  },
+  {
+    path: "/transport/link-transport",
+    component: LinkTransport,
+  },
+  {
+    path: "/hotel/create-hotel/:id",
+    component: CreateHotel,
+  },
+  {
+    path: "/hotel/list-hotel",
+    component: HotelList,
+  },
+  {
+    path: "/transport/attraction-transport",
+    component: AttractionTransport,
+  },
+  {
+    path: "/hotel/list-amities",
+    component: ListAminities,
+  },
+  {
+    path: "/hotel/create-amities",
+    component: CraeteAminities,
+  },
+
+  {
+    path: "/admin/language-settings",
+    component: LanguageList,
+  },
+  {
+    path: "/admin/create-language/:id",
+    component: CreateLanguage,
+  },
+  {
+    path: "/randf/reviewlist",
+    component: ReviewList,
+  },
+  {
+    path: "/randf/faqslist",
+    component: FaqList,
+  },
+  {
+    path: "/randf/createreview/:id",
+    component: CreateReview,
+  },
+  {
+    path: "/randf/createfaq/:id",
+    component: CreateFaq,
+  },
+  {
+    path: "/admin/banner-imagesbtoc",
+    component: BannerImageBtoC,
+  },
 ];
 export default routes;
+///hotel/list-amities  hotel/create-amities

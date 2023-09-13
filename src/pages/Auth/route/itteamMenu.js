@@ -8,6 +8,28 @@ const ItteamMenu = [
     SpanIcon: "nav-icon fas fa-th",
     SideMenu: [],
   },
+
+  {
+    name: "Website Settings",
+    // path: "/admin",
+    SpanIcon: "fa fa-cog",
+    fixMenu: false,
+    admin: true,
+    SideMenu: [
+      {
+        name: "Banner Images",
+        path: "/admin/banner-images",
+      },
+      {
+        name: "Banner Image(BtoC)  ",
+        path: "/admin/banner-imagesbtoc",
+      },
+      {
+        name: "Language  Settings",
+        path: "/admin/language-settings",
+      },
+    ],
+  },
   {
     name: "Admin",
     // path: "/admin",
@@ -49,10 +71,6 @@ const ItteamMenu = [
       {
         name: "Generate PDF",
         path: "/admin/pdf-generate",
-      },
-      {
-        name: "Banner Images",
-        path: "/admin/banner-images",
       },
     ],
   },
@@ -224,6 +242,23 @@ const ItteamMenu = [
         name: "Return Tickets",
         path: "/booking/ticket-return",
         bookingReturnTickets: true,
+      },
+    ],
+  },
+  {
+    name: "Review And Faq",
+    // path: "/admin",
+    SpanIcon: "fa fa-cog",
+    fixMenu: false,
+    admin: true,
+    SideMenu: [
+      {
+        name: "Review",
+        path: "/randf/reviewlist",
+      },
+      {
+        name: "FAQ",
+        path: "/randf/faqslist",
       },
     ],
   },

@@ -118,7 +118,11 @@ const Agencycreationform = (props) => {
     // }
   }, []);
 
-  let agentId = { agencyId: props.agentId, secretKey: requests.apiKey };
+  let agentId = {
+    agencyId: props.agentId,
+    secretKey: requests.apiKey,
+    withPassword: true,
+  };
   //console.log(agentId);
 
   let agentDetail;
@@ -126,6 +130,7 @@ const Agencycreationform = (props) => {
     await axios
       .post(requests.getagencydetail, agentId)
       .then((res) => {
+        console.log(res.data);
         agentDetail = res.data;
 
         initialValues(res.data);

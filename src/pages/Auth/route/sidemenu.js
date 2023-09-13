@@ -7,6 +7,28 @@ const SideMenu = [
     SpanIcon: "nav-icon fas fa-th",
     SideMenu: [],
   },
+
+  {
+    name: "Website Settings",
+    // path: "/admin",
+    SpanIcon: "fa fa-cog",
+    fixMenu: false,
+    admin: true,
+    SideMenu: [
+      {
+        name: "Banner Images",
+        path: "/admin/banner-images",
+      },
+      {
+        name: "Banner Image(BtoC)  ",
+        path: "/admin/banner-imagesbtoc",
+      },
+      {
+        name: "Language  Settings",
+        path: "/admin/language-settings",
+      },
+    ],
+  },
   {
     name: "Admin",
     // path: "/admin",
@@ -48,10 +70,6 @@ const SideMenu = [
       {
         name: "Generate PDF",
         path: "/admin/pdf-generate",
-      },
-      {
-        name: "Banner Images",
-        path: "/admin/banner-images",
       },
     ],
   },
@@ -207,6 +225,53 @@ const SideMenu = [
       },
     ],
   },
+  {
+    name: "Hotel",
+    // path: "/payment",
+    // payment: true,
+    SpanIcon: "fa fa-building",
+    fixMenu: false,
+    SideMenu: [
+      {
+        name: "Hotel Aminities",
+        path: "/hotel/list-amities",
+      },
+      {
+        name: "List Hotel",
+        path: "/hotel/list-hotel",
+      },
+      {
+        name: "Create Hotel",
+        path: "/hotel/create-hotel/null",
+      },
+    ],
+  },
+
+  {
+    name: "Trasnport",
+    // path: "/payment",
+    // payment: true,
+    SpanIcon: "fa fa-credit-card",
+    fixMenu: false,
+    SideMenu: [
+      {
+        name: "Attraction Transport",
+        path: "/transport/attraction-transport",
+      },
+      // {
+      //   name: "List Transport",
+      //   path: "/transport/list-transport",
+      // },
+      {
+        name: "Create Transport",
+        path: "/transport/create-transport",
+      },
+      {
+        name: "Link To Attraction",
+        path: "/transport/link-transport-list",
+      },
+    ],
+  },
 
   {
     name: "Visa",
@@ -243,6 +308,23 @@ const SideMenu = [
         name: "Return Tickets",
         path: "/booking/ticket-return",
         bookingReturnTickets: true,
+      },
+    ],
+  },
+  {
+    name: "Review And Faq",
+    // path: "/admin",
+    SpanIcon: "fa fa-cog",
+    fixMenu: false,
+    admin: true,
+    SideMenu: [
+      {
+        name: "Review",
+        path: "/randf/reviewlist",
+      },
+      {
+        name: "FAQ",
+        path: "/randf/faqslist",
       },
     ],
   },
